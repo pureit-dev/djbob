@@ -1,13 +1,28 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Header.style.css';
 
 const Header = () => {
-	const [isShown, setIsShown] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const ref = useRef();
 
-	const clickHamburger = () => {
-		setIsShown(!isShown);
-	};
+	useEffect(() => {
+		const checkIfClickedOutside = (event) => {
+			if (
+				isMenuOpen &&
+				ref.current &&
+				!ref.current.contains(event.target)
+			) {
+				setIsMenuOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', checkIfClickedOutside);
+
+		return () => {
+			document.removeEventListener('mousedown', checkIfClickedOutside);
+		};
+	}, [isMenuOpen]);
 
 	return (
 		<nav>
@@ -16,9 +31,13 @@ const Header = () => {
 				src='../../logo.png'
 				alt='DJ Bob green logo with headphones and a play button'
 			></img>
-			<div className='header-container'>
-				<i className='fa-solid fa-bars fa-lg header-icon' onClick={clickHamburger}></i>
-				{isShown && (
+			{isMenuOpen ? (
+				<div className='header-container' ref={ref}>
+					<i
+						className='fa-solid fa-x header-icon'
+						onClick={() => setIsMenuOpen((oldstate) => !oldstate)}
+					></i>
+
 					<div className='links-container'>
 						<NavLink to={'/'} className='navlink'>
 							Home
@@ -39,8 +58,15 @@ const Header = () => {
 							Contact Us
 						</NavLink>
 					</div>
-				)}
-			</div>
+				</div>
+			) : (
+				<div className='header-container nobackground' ref={ref}>
+					<i
+						className='fa-solid fa-bars fa-lg header-icon'
+						onClick={() => setIsMenuOpen((oldstate) => !oldstate)}
+					></i>
+				</div>
+			)}
 		</nav>
 	);
 };
