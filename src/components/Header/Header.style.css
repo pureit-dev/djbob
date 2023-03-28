@@ -1,0 +1,38 @@
+nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.header-container {
+	display: flex;
+	gap: 20px;
+	padding: 20px;
+	justify-content: right;
+	align-items: right;
+	flex-direction: column;
+}
+.links-container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 10px;
+	right: 0;
+}
+.header-icon {
+	text-align: right;
+	cursor: pointer;
+}
+
+.header-logo {
+	height: 100px;
+	margin: 20px;
+}
+
+.navlink {
+	text-decoration: none;
+	text-align: center;
+}
+
+.navlink.active {
+	text-decoration: underline;
+}
