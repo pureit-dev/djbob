@@ -1,9 +1,19 @@
 import './Reviews.style.css'
+import { getReviews, addReview } from '../../firebase'
 
 const Reviews = () => {
-
+    const allReviews = getReviews()
+    console.log(allReviews)
     return (
-        <h1>Reviews</h1>
+        <div>
+          allReviews.map((review) => {
+            return (
+                <div className="review">
+                    <h3>{review.name}</h3>
+                    <p>{review.review}</p>
+       </div>
+        
+        
     )
 }
 
