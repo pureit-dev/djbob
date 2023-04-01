@@ -1,27 +1,40 @@
 import './Reviews.style.css';
 import { getReviews, addReview } from '../../firebase';
-import { useEffect, useState } from 'react';
+import { Suspense } from 'react';
+import { useLoaderData, defer, Await } from 'react-router-dom';
+import Form from '../Form/Form.component';
+
+export function loader() {
+	return defer({ reviews: getReviews() });
+}
 
 const Reviews = () => {
-
-    const [reviews, setReviews] = useState([]);
-
-    useEffect(() => {
-        const allReviews = getReviews();
-        console.log(allReviews)
-        setReviews(allReviews);
-    }, [])
-
-    const reviewElements = reviews.map((review) => {
-        return <div className='review'>
-				<h3>{review.name}</h3>
-				<p>{review.review}</p>
-		</div>
-    })
 	
-    // console.log(reviews)
-	return reviewElements
+	const dataPromise = useLoaderData();
+
 	
+	return (
+        <>
+        <Form />
+		<Suspense fallback={<div>Loading...</div>}>
+			<Await resolve={dataPromise.reviews}>
+				{(reviews) => (
+					<div className='reviews'>
+						{reviews.map((review, index) => {
+							return (
+								<div key={index} className='review'>
+									<p>{review.name}</p>
+									<p>{review.review}</p>
+                                    <p>{review.rating}</p>
+								</div>
+							);
+						})}
+					</div>
+				)}
+			</Await>
+		</Suspense>
+        </>
+	);
 };
 
 export default Reviews;
