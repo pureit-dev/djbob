@@ -28,9 +28,11 @@ export const getReviews = async () => {
     const q = query(reviewsCollectionRef);
     const querySnapshot = await getDocs(q);
     const reviews = [];
-    querySnapshot.forEach((doc) => {
-        reviews.push(doc.data());
-    });
+    if (querySnapshot) {
+		querySnapshot.forEach((doc) => {
+			reviews.push(doc.data());
+		});
+	};
     return reviews;
 }
 
