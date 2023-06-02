@@ -6,6 +6,8 @@ import Button from '../Button/Button.component';
 
 const Form = () => {
 
+	const [formValues, setFormValues] = useState({});
+
 	return (
 		<form className='booking-form'>
 			<FormInput
