@@ -70,7 +70,7 @@
 }
 
 hr {
-	width: 60%;
+	width: 80%;
 	background-color: #96c83c;
 }
 
@@ -96,6 +96,11 @@ hr {
 	display: flex;
 	flex-direction: column;
 	width: 300px;
+	gap: 5px;
+}
+
+.review-form-textarea > textarea{
+	height: 200px;
 }
 
 .review-form-text > label,
@@ -128,6 +133,6 @@ hr {
 
 	.review-form-text,
 	.review-form-textarea {
-		width: 600px;
+		width: 500px;
 	}
 }

@@ -23,6 +23,7 @@ const Reviews = () => {
 			label: 'Review',
 			type: 'textarea',
 			className: 'review-form-textarea',
+			placeholder: 'Tell us about your experience with DJ Bob'
 		},
 		{
 			label: 'Rating',

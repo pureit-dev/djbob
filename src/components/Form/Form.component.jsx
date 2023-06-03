@@ -32,11 +32,11 @@ const FormRadio = ({ label, values, setValue, className, name, text }) => (
 	</div>
 );
 
-const FormTextArea = ({ label, value, setValue, className }) => (
+const FormTextArea = ({ label, value, setValue, className, placeholder }) => (
 	<div className={className}>
 		<label>{label}</label>
 		<textarea
-			
+			placeholder={placeholder}
 			value={value}
 			onChange={(e) => setValue(e.target.value)}
 		/>
@@ -78,6 +78,7 @@ export default function Form({ config, onClick }) {
 									key={item.label}
 									label={item.label}
 									value={formState[item.label]}
+									placeholder={item.placeholder}
 									className={item.className}
 									setValue={updateFormState(item.label)}
 								/>
