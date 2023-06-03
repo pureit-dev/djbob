@@ -1,0 +1,133 @@
+/* SUCCESS ITEMS */
+
+.success-rating-icons {
+	display: flex;
+	justify-content: center;
+	flex-direction: row-reverse;
+}
+
+.success-rating-icons > input {
+	display: none;
+}
+
+.success-rating-icons > label {
+	position: relative;
+	width: 1.1em;
+	font-size: 30px;
+	color: #ffd700;
+	cursor: pointer;
+}
+
+.success-rating-icons > label::before {
+	content: '\2605';
+	position: absolute;
+	opacity: 0;
+}
+
+.success-rating-icons > label:hover:before,
+.success-rating-icons > label:hover ~ label:before {
+	opacity: 1 !important;
+}
+
+.success-rating-icons > input:checked ~ label:before {
+	opacity: 1;
+}
+
+.success-rating-icons:hover > input:checked ~ label:before {
+	opacity: 0.4;
+}
+
+.reviews {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	gap: 2rem;
+}
+
+.review {
+	text-align: center;
+}
+
+.review-title {
+	font-size: 2rem;
+	margin: 0;
+}
+
+.review-stars {
+	font-size: 30px;
+	color: #ffd700;
+	margin: 10px 0;
+}
+
+.review-rating {
+	font-size: 1.25rem;
+}
+
+.review-name {
+	font-style: italic;
+}
+
+hr {
+	width: 60%;
+	background-color: #96c83c;
+}
+
+.reviews-container {
+	/* display: flex;
+	justify-content: space-evenly;
+	flex-direction: column;
+	gap: 20px; */
+}
+
+.review-form-button {
+	border-radius: 5px;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	font-size: 1.25rem;
+	background-color: #96c83c;
+	cursor: pointer;
+}
+
+.review-form-text,
+.review-form-textarea {
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+}
+
+.review-form-text > label,
+.review-form-textarea > label {
+	font-size: 1.25rem;
+}
+
+.review-form-text > input,
+.review-form-textarea > textarea {
+	font-size: 1.25rem;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	font-family: inherit;
+}
+
+/* =================
+    Media queries 
+   ================= */
+@media (min-width: 650px) {
+	.reviews-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		justify-items: center;
+		gap: 20px;
+	}
+	.reviews-container :nth-child(4) {
+		grid-column: span 3;
+	}
+
+	.review-form-text,
+	.review-form-textarea {
+		width: 600px;
+	}
+}

@@ -13,9 +13,9 @@ nav {
 	right: 10px;
 }
 
-.nobackground{
+/* .nobackground{
 	background-color: #fff;
-}
+} */
 
 .links-container {
 	display: flex;
@@ -37,6 +37,7 @@ nav {
 .navlink {
 	text-decoration: none;
 	text-align: right;
+	color: white;
 }
 
 .navlink.active {

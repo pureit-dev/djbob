@@ -7,7 +7,7 @@ import {
 	getDoc,
 	query,
 	where,
-    setDoc,
+	setDoc,
 } from 'firebase/firestore/lite';
 
 const firebaseConfig = {
@@ -25,18 +25,18 @@ const db = getFirestore(app);
 const reviewsCollectionRef = collection(db, 'reviews');
 
 export const getReviews = async () => {
-    const q = query(reviewsCollectionRef);
-    const querySnapshot = await getDocs(q);
-    const reviews = [];
-    querySnapshot.forEach((doc) => {
-        reviews.push(doc.data());
-    });
-    return reviews;
-}
+	const q = query(reviewsCollectionRef);
+	const querySnapshot = await getDocs(q);
+	const reviews = [];
+	if (querySnapshot) {
+		querySnapshot.forEach((doc) => {
+			reviews.push(doc.data());
+		});
+	}
+	return reviews;
+};
 
 export const addReview = async (review) => {
-    const docRef = doc(reviewsCollectionRef);
-    await setDoc(docRef, review);
-}
-
-
+	const docRef = doc(reviewsCollectionRef);
+	await setDoc(docRef, review);
+};

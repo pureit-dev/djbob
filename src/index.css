@@ -3,9 +3,18 @@
 }
 
 body {
-  margin: 0;  
+  margin: 0;
+  background-color: black;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+ 
+  
 }
 
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
 
 
