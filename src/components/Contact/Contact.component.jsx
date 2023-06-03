@@ -6,7 +6,7 @@ const Contact = () => {
 		{ label: 'Name', type: 'text' },
 		{ label: 'Email', type: 'email' },
 		{ label: 'Phone Number', type: 'tel' },
-		{ label: 'Submit', type: 'button' }
+		{ label: 'Submit', type: 'button', className: 'review-form-button' }
 	  ];
 	  
     return (

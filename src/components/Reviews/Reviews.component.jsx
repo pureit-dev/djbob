@@ -1,6 +1,6 @@
 import './Reviews.style.css';
 import { getReviews, addReview } from '../../firebase';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useLoaderData, defer, Await } from 'react-router-dom';
 import Form from '../Form/Form.component';
 
@@ -10,6 +10,8 @@ export function loader() {
 
 const Reviews = () => {
 	const dataPromise = useLoaderData();
+	const [moreReviews, setMoreReviews] = React.useState(false);
+
 	const submitData = (formData) => {
 		addReview({
 			name: formData.Name,
@@ -23,7 +25,8 @@ const Reviews = () => {
 			label: 'Review',
 			type: 'textarea',
 			className: 'review-form-textarea',
-			placeholder: 'Tell us about your experience with DJ Bob'
+			placeholder: 'Tell us about your experience with DJ Bob',
+			maxLength: 100,
 		},
 		{
 			label: 'Rating',
@@ -41,6 +44,7 @@ const Reviews = () => {
 	return (
 		<>
 			<div className='review-form-container'>
+				<h1>Tell us what you thought of your DJ Bob disco!</h1>
 				<Form config={formConfig} onClick={submitData} />
 			</div>
 			<Suspense fallback={<div>Loading...</div>}>
@@ -55,8 +59,7 @@ const Reviews = () => {
 									for (let i = 0; i < review.rating; i++) {
 										rating += `★ `;
 									}
-									if(index < 4){
-
+									if (index < 4 && !moreReviews) {
 										return (
 											<div key={index} className='review'>
 												<p className='review-stars'>
@@ -65,7 +68,22 @@ const Reviews = () => {
 												<q className='review-rating'>
 													{review.review}
 												</q>
-	
+
+												<p className='review-name'>
+													{review.name}
+												</p>
+											</div>
+										);
+									} else if (moreReviews) {
+										return (
+											<div key={index} className='review'>
+												<p className='review-stars'>
+													{rating}
+												</p>
+												<q className='review-rating'>
+													{review.review}
+												</q>
+
 												<p className='review-name'>
 													{review.name}
 												</p>
@@ -74,6 +92,12 @@ const Reviews = () => {
 									}
 								})}
 							</div>
+							<p
+								className='review-more-less'
+								onClick={() => setMoreReviews(!moreReviews)}
+							>
+								{moreReviews ? 'Less' : 'More'}
+							</p>
 						</div>
 					)}
 				</Await>
